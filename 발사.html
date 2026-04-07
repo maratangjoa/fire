@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핵전쟁</title>
+    <style>
+        #container
+        {
+            display: flex;
+            flex-direction: column;  
+            justify-content: center;
+            align-items: center;
+            height:  100vh;
+        }
+        #imgBox {
+            position: relative;  
+        }
+
+        #img1{
+            width:1000px ;
+            height:1000px;
+            object-fit: cover;
+        }
+        #img2{
+            opacity: 0;
+            transition: opacity 1s;
+            position: absolute;
+            width:1000px ;
+            height:600px;
+            right: 50%;   /* 오른쪽 이동 */
+            top: 50%;    /* 아래 이동 */
+        }
+        #span{
+            font-size: 50pt;
+            text-align: center;
+        }
+        #btn{
+            
+            font-size: 50pt;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgBox">
+          <img id="img1" src="https://i.pinimg.com/736x/b8/82/69/b88269cf9cc2a6c7f620a16646969af9.jpg" >
+          <img id="img2" src="교수님.png">
+        </div>
+        
+        <br>
+        <span id="span">아래버튼을 눌러 발사해보세요.</span>
+        <br>
+        <button id="btn">발사!!!!!!!!!!!!!!!!!!!!!!!!!!!</button>
+    </div>
+   
+
+    <script>
+        let img1=document.getElementById("img1")
+        let img2=document.getElementById("img2")
+        let sp=document.getElementById("span")
+        let btn=document.getElementById("btn")
+        let originalSrc="https://i.pinimg.com/736x/b8/82/69/b88269cf9cc2a6c7f620a16646969af9.jpg"
+        //console.log(img)
+    
+
+        
+
+        img_list=[
+            "https://i.pinimg.com/474x/81/7c/29/817c29bc2101f1b4a377da9b890ca2a8.jpg?nii=t", //1
+            "https://i.pinimg.com/474x/13/55/b2/1355b2f18db02646dd1ffae9a46cfd38.jpg?nii=t",// 2
+            "https://i.pinimg.com/474x/10/ae/6a/10ae6ade71b4d40c2af9a8bde4bd2002.jpg?nii=t",//3
+            "https://i.pinimg.com/736x/e2/7f/f2/e27ff2c62f3751b8d4ea99e1a5af8bd4.jpg",//4
+            "https://pbs.twimg.com/media/EkFzwx2VgAE0z4r.jpg",//5
+            "https://i.pinimg.com/originals/d0/0c/1e/d00c1eee7e03a674fe5620ba58ba181a.jpg",//6
+            "https://i.pinimg.com/originals/66/17/db/6617dbf84b99bc8be7b8281243ff8ce6.jpg?nii=t",//7
+            "https://th.bing.com/th/id/OIP.EA1OvOpJUEZmCzaXGd54ZwHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",//8
+            "https://i.ytimg.com/vi/d6MWFsxSCGI/maxresdefault.jpg",//9
+            "https://as2.ftcdn.net/v2/jpg/05/34/81/11/1000_F_534811165_vEx6ZedaJcIUolEZP2gFRCE4B8rKwPOd.jpg"//10
+
+        ]
+
+
+        btn.addEventListener('click',()=>{
+            btn.disabled = true; // 버튼 막기
+            btn.style.display="none";
+
+            running=true;
+            sp.innerText=""
+            
+            for(let i=0;i<10;i++){
+                setTimeout(() => {
+                  img1.src=img_list[i]  
+                  sp.innerText+=10-i + ' 발사\n'
+
+                if ((i+1)== 10) {
+
+                    setTimeout(() => {
+                        img2.style.opacity = "1"; // ⭐ 서서히 등장
+                        }, 10);
+                    sp.innerText+= "당신은 핵폭탄에 의해 사망했습니다."
+                    
+            }
+                }, i*1000);
+                
+            }
+            running=false;
+        })
+
+
+        
+    </script>
+</body>
+</html>
